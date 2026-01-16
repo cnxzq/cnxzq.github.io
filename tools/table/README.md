@@ -1,27 +1,27 @@
-# merge table cell
+# 合并单元格
 
-https://observablehq.com/@zq1988626/merge-table-cell@491
+https://observablehq.com/@zqzyz/table-creater@505
 
 View this notebook in your browser by running a web server in this folder. For
 example:
 
 ~~~sh
-python -m SimpleHTTPServer
+npx http-server
 ~~~
 
 Or, use the [Observable Runtime](https://github.com/observablehq/runtime) to
 import this module directly into your application. To npm install:
 
 ~~~sh
-npm install @observablehq/runtime@4
-npm install https://api.observablehq.com/d/05cec6bcfd3bae35.tgz?v=3
+npm install @observablehq/runtime@5
+npm install https://api.observablehq.com/d/05cec6bcfd3bae35@505.tgz?v=3
 ~~~
 
 Then, import your notebook and the runtime as:
 
 ~~~js
 import {Runtime, Inspector} from "@observablehq/runtime";
-import define from "@zq1988626/merge-table-cell";
+import define from "@zqzyz/table-creater";
 ~~~
 
 To log the value of the cell named “foo”:

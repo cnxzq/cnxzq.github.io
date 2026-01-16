@@ -1,0 +1,40 @@
+{
+  "name": "网站完整名称", 
+  "short_name": "网站简称", // 在没有足够空间显示 Web 应用程序的全名时使用
+  "start_url": ".", // 从启动应用程序时加载的 URL。如果以相对 URL 的形式给出，则基本 URL 将是 manifest 的 URL
+  "display": "standalone", // 访问网站窗口展示模式，如：fullscreen/standalone
+  "background_color": "#fff", // 背景颜色
+  "description": "网站描述",
+  "icons": [ // 网站图标
+    {
+      "src": "images/touch/homescreen48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "images/touch/homescreen72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "images/touch/homescreen96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "images/touch/homescreen144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "images/touch/homescreen168.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    },
+    {
+      "src": "images/touch/homescreen192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+}

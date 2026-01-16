@@ -1,14 +1,14 @@
 {
-  "name": "@zq1988626/merge-table-cell",
-  "main": "05cec6bcfd3bae35@491.js",
-  "version": "491.0.0",
-  "homepage": "https://observablehq.com/@zq1988626/merge-table-cell",
+  "name": "@zqzyz/table-creater",
+  "main": "05cec6bcfd3bae35@505.js",
+  "version": "505.0.0",
+  "homepage": "https://observablehq.com/@zqzyz/table-creater",
   "author": {
     "name": "zq",
-    "url": "https://observablehq.com/@zq1988626"
+    "url": "https://observablehq.com/@zqzyz"
   },
   "type": "module",
   "peerDependencies": {
-    "@observablehq/runtime": "4"
+    "@observablehq/runtime": "4 - 5"
   }
 }

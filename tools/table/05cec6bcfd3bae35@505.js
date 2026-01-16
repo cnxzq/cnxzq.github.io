@@ -1,18 +1,14 @@
-// https://observablehq.com/@zq1988626/merge-table-cell@491
-export default function define(runtime, observer) {
-  const main = runtime.module();
-  main.variable(observer()).define(["md"], function(md){return(
-md`# merge table cell`
-)});
-  main.variable(observer("container")).define("container", ["html"], function(html){return(
+function _1(md){return(
+md`# 合并单元格`
+)}
+
+function _container(html){return(
 html`
 <div>
   列数：<input type="number" min=1 max=30 v-model.number="cols" style="width:59px;" />
   行数：<input type="number" min=1 max=30 v-model.number="rows" style="width:59px;" />
-  表头 行数：<input type="number" min=0 max=30 v-model.number="hrows" style="width:59px;" />
-</div>
-<div>
-  宽度：<input v-model="width" style="width:59px;" />
+  表头行数：<input type="number" min=0 max=30 v-model.number="hrows" style="width:59px;" />
+  table宽度：<input v-model="width" style="width:59px;" />
 </div>
 <div>
   <div>合并列表</div>
@@ -24,9 +20,9 @@ html`
   </div>
 </div>
 <div>
-  <div>使用鼠标选择要合并的单元格，然后点击 merge 按钮</div>
+  <div>使用鼠标选择要合并的单元格，然后点击 合并 按钮</div>
   <div>
-    <button @click="btn_merge_click">merge</button>
+    <button @click="btn_merge_click">合并</button>
   </div>
   <div style="padding:8px;">
     <table :style="{width:width}">
@@ -65,8 +61,9 @@ html`
   </div>
 </div>
 `
-)});
-  main.variable(observer()).define(["Vue","container"], function(Vue,container){return(
+)}
+
+function _3(Vue,container){return(
 new Vue({
   el:container,
   data(){
@@ -247,12 +244,14 @@ new Vue({
       this.stopSel();
     }
   }
-})
-)});
-  main.variable(observer("Vue")).define("Vue", ["require"], function(require){return(
-require("vue")
-)});
-  main.variable(observer()).define(["html"], function(html){return(
+}),""
+)}
+
+function _Vue(require){return(
+require("vue@2")
+)}
+
+function _5(html){return(
 html`
 <style>
 table{
@@ -305,6 +304,14 @@ table th.sel input{
 }
 </style>
 `
-)});
+)}
+
+export default function define(runtime, observer) {
+  const main = runtime.module();
+  main.variable(observer()).define(["md"], _1);
+  main.variable(observer("container")).define("container", ["html"], _container);
+  main.variable(observer()).define(["Vue","container"], _3);
+  main.variable(observer("Vue")).define("Vue", ["require"], _Vue);
+  main.variable(observer()).define(["html"], _5);
   return main;
 }
