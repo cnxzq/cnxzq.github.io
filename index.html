@@ -52,8 +52,13 @@
             top: 0;
         }
 
-        .block{display: block;}
-        .h-full{height: 100%;}
+        .block {
+            display: block;
+        }
+
+        .h-full {
+            height: 100%;
+        }
 
 
         .btn {
@@ -82,25 +87,70 @@
         .grid-item:nth-child(2n) {
             background-color: #6666;
         }
+
+        .form-item {
+            span {
+                display: inline-block;
+                width: 4rem;
+            }
+        }
+
+        input,
+        button {
+            padding: 8px;
+        }
+
+        .text-right {
+            text-align: right;
+        }
     </style>
 </head>
 
-<body>
-    <div id="app">
-        <div class="flex flex-wrap sticky bg-default">
-            <div v-for="(tab,i) in tabs" class="p-2 btn" @click="currentTab=i" :style="{background:currentTab===i?'#666':''}">
-                <a :href="'#'+i">{{tab.title}}</a>
+<body style="display: none; margin: 0;">
+    <div id="app" style="height: 100vh; ">
+        <div v-if="logged">
+            <div class="flex flex-wrap sticky bg-default">
+                <div v-for="(tab,i) in tabs" class="p-2 btn" @click="currentTab=i"
+                    :style="{background:currentTab===i?'#666':''}">
+                    <a :href="'#'+i">{{tab.title}}</a>
+                </div>
+                <div class="flex-1 text-right">
+                    <button @click='handleBtnCloseClick'>退出</button>
+                </div>
             </div>
-        </div>
-        <div class="p-2">
-            <div v-for="group in tabs[currentTab].groups">
-                <h3 v-if="group.title">{{group.title}}</h3>
-                <div class="grid-container">
-                    <div v-for="(item,i) in group.items" class="grid-item">
-                       <a :href="item.url" class="block h-full"> {{i+1}}.  {{item.name}}</a>
+            <div class="p-2">
+                <div v-for="group in tabs[currentTab].groups">
+                    <h3 v-if="group.title">{{group.title}}</h3>
+                    <div class="grid-container">
+                        <div v-for="(item,i) in group.items" class="grid-item">
+                            <a :href="item.url" class="block h-full"> {{i+1}}. {{item.name}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-else style="height: 100%;  display: flex; justify-content: center; align-items: center;">
+            <form action="javascript:void(0)" style="display: flex; gap:8px; flex-direction: column;">
+                <h2>
+                    登录
+                </h2>
+                <div class="form-item">
+                    <label for="username">
+                        <span>用户名</span>
+                        <input name="username" v-model="userinput.username" />
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label for="password">
+                        <span>密码</span>
+                        <input name="password" v-model="userinput.password" />
+                    </label>
+                </div>
+                <div style="height: 3rem; color:red;">{{log}}</div>
+                <div style="text-align: center;">
+                    <button @click="handleBtnLoginClich" style="display: block; width: 100%;">登录</button>
+                </div>
+            </form>
         </div>
     </div>
     <script src="./js/vue-3.js"></script>
@@ -681,11 +731,46 @@
         }
         const hash = Number(window.location.hash.replace('#', ''))
         const tabIndex = isNaN(hash) ? 0 : (hash >= 0 && hash < data.tabs.length) ? hash : 0
+
+        const item = localStorage.getItem('logged');
+        console.log(item)
         Vue.createApp({
             data() {
                 return {
                     tabs: data.tabs,
                     currentTab: tabIndex,
+                    logged: !!item || false,
+                    userinput: {
+                        username: '',
+                        password: '',
+                    },
+                    log: ''
+                }
+            },
+            mounted() {
+                document.body.style.display = ""
+            },
+            methods: {
+                handleBtnLoginClich() {
+                    let err = ''
+                    if (!this.userinput.username) {
+                        err = '请输入账号'
+                    } else if (!this.userinput.password) {
+                        err = '请输入密码'
+                    } else if (this.userinput.username === 'admin' && this.userinput.password === '123456') {
+                        err = ''
+                    } else {
+                        err = '用户名或密码错误'
+                    }
+                    this.log = err
+                    if (!err) {
+                        localStorage.setItem('logged', '1');
+                        this.logged = true
+                    }
+                },
+                handleBtnCloseClick() {
+                    localStorage.removeItem('logged');
+                    this.logged = false
                 }
             }
         }).mount('#app')
